@@ -175,21 +175,17 @@ fieldset[disabled] .btn-xl.active {
 .navbar-default {
     background-color: #222;
     border-color: transparent;
-    min-height: 100px;
+    min-height: 80px;
 }
 
 .navbar-default .navbar-brand {
     color: #fed136;
     font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
-    height: 100px;
+    height: 60px;
     display: flex;
     align-items: flex-start;
 }
 
-.custom-navbar-logo img {
-    height: 80px !important;
-    margin-top: -18px !important;
-}
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus,
