@@ -174,13 +174,18 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default {
     background-color: #222;
-    border-color: transparent
+    border-color: transparent;
+    min-height: 80px;
 }
 
 .navbar-default .navbar-brand {
     color: #fed136;
-    font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive
+    font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
+    height: 60px;
+    display: flex;
+    align-items: flex-start;
 }
+
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus,
@@ -291,7 +296,8 @@ header .intro-text .intro-heading {
     font-weight: 700;
     font-size: 20px;
     line-height: 20px;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    color: white;
 }
 
 @media (min-width:500px) {
@@ -312,7 +318,8 @@ header .intro-text .intro-heading {
         font-weight: 700;
         font-size: 40px;
         line-height: 40px;
-        margin-bottom: 20px
+        margin-bottom: 20px;
+        color: white;
     }
 }
 
