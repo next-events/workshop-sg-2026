@@ -265,40 +265,324 @@
     font-size: larger; /* Increase the font size; you can also use specific units like px, em, etc. */
   }
 </style>
+<style>
+  .prog-day {
+    background: linear-gradient(135deg, #007a63 0%, #009879 100%);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 8px;
+    margin: 36px 0 18px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .prog-day-label {
+    font-size: 11px;
+    background: rgba(255,255,255,0.22);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .prog-session {
+    border-left: 4px solid #009879;
+    background: #fff;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.07);
+    overflow: hidden;
+  }
+  .prog-session-head {
+    background: #f2fbf8;
+    padding: 10px 18px;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-bottom: 1px solid #e4f2ee;
+  }
+  .prog-session-time {
+    font-size: 12px;
+    color: #009879;
+    font-weight: 700;
+    background: #dff2ec;
+    padding: 2px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .prog-session-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    flex: 1;
+  }
+  .prog-session-chair {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+  }
+  .prog-talk {
+    display: flex;
+    align-items: flex-start;
+    padding: 9px 18px;
+    border-top: 1px solid #f2f2f2;
+    gap: 14px;
+  }
+  .prog-talk-time {
+    font-size: 11px;
+    color: #009879;
+    font-weight: 700;
+    min-width: 76px;
+    padding-top: 3px;
+    white-space: nowrap;
+  }
+  .prog-talk-body { flex: 1; min-width: 0; }
+  .prog-talk-speaker { font-weight: 600; color: #222; font-size: 14px; line-height: 1.4; }
+  .prog-talk-title { color: #555; font-size: 13px; margin-top: 2px; font-style: italic; line-height: 1.4; }
+  .prog-talk-sub { color: #777; font-size: 12px; margin-top: 4px; line-height: 1.6; }
+  .prog-panel {
+    display: flex;
+    align-items: flex-start;
+    padding: 9px 18px;
+    border-top: 1px solid #f5e9c8;
+    gap: 14px;
+    background: #fffbf0;
+  }
+  .prog-panel-time { font-size: 11px; color: #c47d00; font-weight: 700; min-width: 76px; padding-top: 3px; white-space: nowrap; }
+  .prog-panel-label { font-weight: 700; color: #7a5500; font-size: 14px; line-height: 1.4; }
+  .prog-panel-sub { color: #888; font-size: 12px; margin-top: 3px; line-height: 1.6; }
+  .prog-break {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 9px 18px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #888;
+  }
+  .prog-break-time { font-size: 11px; color: #bbb; font-weight: 700; min-width: 76px; white-space: nowrap; }
+  .prog-social {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #fff8ec 0%, #fff 100%);
+    border-left: 4px solid #f5a623;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+  }
+  .prog-social-time { font-size: 11px; color: #f5a623; font-weight: 700; min-width: 76px; padding-top: 3px; white-space: nowrap; }
+  .prog-social-label { font-weight: 700; color: #b37000; font-size: 14px; }
+  .prog-social-detail { color: #999; font-size: 13px; margin-top: 2px; }
+  .prog-tour {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #f0faf5 0%, #fff 100%);
+    border-left: 4px solid #6dbb8a;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.06);
+  }
+  .prog-tour-time { font-size: 11px; color: #6dbb8a; font-weight: 700; min-width: 76px; padding-top: 3px; }
+  .prog-tour-label { font-weight: 700; color: #3a7a56; font-size: 14px; }
+  .prog-tour-detail { color: #999; font-size: 13px; margin-top: 2px; }
+  .prog-parallel { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .prog-parallel > div { flex: 1; min-width: 220px; }
+  .prog-phd-lunch {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 18px;
+    background: #f0faf7;
+    border: 1px solid #c8e8de;
+    border-radius: 6px;
+    height: 100%;
+  }
+  .prog-phd-time { font-size: 11px; color: #009879; font-weight: 700; min-width: 76px; white-space: nowrap; padding-top: 2px; }
+  .prog-phd-label { font-weight: 700; color: #007a63; font-size: 14px; }
+  .prog-phd-sub { font-size: 12px; color: #777; margin-top: 3px; line-height: 1.5; }
+  .tbd-row { opacity: 0.5; }
+  .tbd-badge { display: inline-block; font-size: 10px; background: #ddd; color: #777; padding: 1px 7px; border-radius: 3px; font-weight: 700; letter-spacing: 0.5px; }
+  .pre-workshop-box {
+    background: #f5f5f5;
+    border-left: 4px solid #ccc;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 28px 0 0;
+    color: #555;
+  }
+  .pre-workshop-box strong { display: block; font-size: 15px; color: #333; margin-bottom: 8px; }
+  .pre-workshop-box ul { margin: 0; padding-left: 18px; font-size: 13px; color: #777; line-height: 1.9; }
+  .tentative-note { text-align: center; font-size: 13px; color: #bbb; margin-top: -6px; margin-bottom: 4px; font-style: italic; }
+</style>
+
 <section id="schedule" class=>
   <div class="container">
+
     <div class="row">
       <div class="col-lg-12 text-center">
         <h2 class="section-heading">Program</h2>
-        <!--h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3-->
+        <p class="tentative-note">Tentative &nbsp;·&nbsp; I4, NUS, Singapore &nbsp;·&nbsp; 29 April – 1 May 2026</p>
       </div>
     </div>
-    <!-- TBD. More details will be shared soon—stay tuned!  -->
-    <!-- <table style="width: 100%">
-        <tr> <th width=130px> Activity type </th> <th width=150px> Time (Singapore Time) </th> <th width=400px> Title </th> </tr>
-        <tr> <td width=130px> Opening </td> <td width=150px> 9.00am </td> <td></td> </tr>
-        <tr class="keynote"> <td width=130px>Keynote</td> <td width=150px>9.00am-9.35am</td> <td width=400px>Keynote 1: LLMs for Recommendations: A Hybrid Approach by Dr. Minmin Chen from Google </td> </tr>
-        <tr> <td width=130px>Paper oral</td> <td width=150px>9.35am-9.45am</td> <td width=400px>Multimodal Conditioned Diffusion Model for Recommendation</td> </tr>
-        <tr> <td width=130px>Paper oral</td> <td width=150px>9.45pm-9.55pm</td> <td width=400px>Diffusion Recommendation with Implicit Sequence Influence</td> </tr>
-        <tr class="keynote"> <td width=130px>Keynote</td> <td width=150px>9.55am-10.30am</td> <td width=400px>Keynote 2: Actions Speak Louder than Words: Trillion-Parameter Sequential Transducers for Generative Recommendations by Dr. Jiaqi Zhai and Dr. Rui Li from Meta </td> </tr>
-        <tr> <td width=130px> Coffee break </td> <td width=150px> 10.30am-11.00am</td><td></td> </tr>
-        <tr class="keynote"> <td width=130px>Keynote</td> <td width=150px>11.00am-11.35am</td> <td width=400px>Keynote 3: Data, methods, and evaluation for knowledge-grounded conversational recommendation systems by Prof. Julian McAuley from UCSD </td> </tr>
-        <tr> <td width=130px>Paper oral</td> <td width=150px>11.35am-11.45am</td> <td width=400px>OutfitGPT: LLMs as Fashion Outfit Generator and Recommender</td> </tr>
-        <tr> <td width=130px>Paper oral</td> <td width=150px>11.45am-11.55am</td> <td width=400px>Bridging Items and Language: A Transition Paradigm for Large Language Model-Based Recommendation</td> </tr>
-        <tr> <td width=130px>Paper oral</td> <td width=150px>11.55am-12.05pm</td> <td width=400px>A Study of Implicit User Unfairness in Large Language Models for Recommendation</td> </tr>
-        
-        <tr> <td width=130px>Paper oral</td> <td width=150px>12.05pm-12.15pm</td> <td width=400px>How Reliable is Your Simulator? Analysis on the Limitations of Current LLM-based User Simulators for Conversational Recommendation</td> </tr>
-        <tr> <td width=130px>Paper oral</td> <td width=150px>12.15pm-12.25pm</td> <td width=400px>Controllable and Transparent Textual Latents for Recommender Systems</td> </tr>
-        <tr> <td width=130px>Paper oral</td> <td width=150px>12.25pm-12.35pm</td> <td width=400px>Aligning GPTRec with Beyond-Accuracy Goals with Reinforcement Learning</td> </tr>      
-    </table> -->
-  </div>
-  <div class="row text-justify">
-    <div class="col-md-12">
-      <p class="large text-muted venue-description">
-        <!-- TBD. More details will be shared soon—stay tuned! <a href='assets/files/layout.pdf'>[Layout]</a> -->
-        TBD. More details will be shared soon—stay tuned!
-      </p>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="pre-workshop-box">
+          <strong>25–28 April (Sat–Tue) &nbsp;·&nbsp; Pre-Workshop: Responsible AI (RAi) Sandpit</strong>
+          <ul>
+            <li>Co-organized with RAi UK — an intensive discussion forum for researchers from Singapore, UK and China.</li>
+            <li>Involving post-docs, mentors and professors from NUS, UK and China.</li>
+            <li>Aims: promote multi-country, multi-disciplinary research and propose new RAi initiatives.</li>
+            <li><em>By invitation only, with the exception of the final day.</em></li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <!-- DAY 1 -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="prog-day">29 April 2026 &nbsp;<span style="font-weight:400;font-size:16px;">(Wed)</span><span class="prog-day-label">DAY 1</span></div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">0830–0930</span>
+            <span class="prog-session-name">Opening &amp; Invited Talks</span>
+            <span class="prog-session-chair">Chair: Maosong Sun (Tsinghua)</span>
+          </div>
+          <div class="prog-talk"><span class="prog-talk-time">0830–0850</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof TS Chua &amp; Prof Maosong Sun</div><div class="prog-talk-title">Opening Remarks</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">0850–0910</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Bo Zhang <span style="font-weight:400;color:#999;">(Tsinghua)</span></div><div class="prog-talk-title">From LLMs to Agentic AI</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">0910–0930</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Dame Wendy Hall <span style="font-weight:400;color:#999;">(Univ of Southampton)</span></div><div class="prog-talk-title">Unintended Consequences</div></div></div>
+        </div>
+
+        <div class="prog-break"><span class="prog-break-time">0930–1000</span><span>Group Photo &amp; Teas</span></div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">1000–1230</span>
+            <span class="prog-session-name">Responsible AI</span>
+            <span class="prog-session-chair">Chair: Joel Fisher (RAi UK / Univ of Nottingham)</span>
+          </div>
+          <div class="prog-talk"><span class="prog-talk-time">1000–1130</span><div class="prog-talk-body"><div class="prog-talk-speaker">Reports on RAi Sandpits</div><div class="prog-talk-sub">· Introduction to RAi UK and Responsible AI Assurance<br>· Proposals from the RAi UK / NExT International Sandpit — <em>'Advancing the RAI Assurance Model Across Cultures'</em><br>· Short research talks</div></div></div>
+          <div class="prog-panel"><span class="prog-panel-time">1130–1230</span><div class="prog-talk-body"><div class="prog-panel-label">Panel: Responsible AI</div><div class="prog-panel-sub">Facilitator: Dame Wendy Hall (Southampton)<br>Panelists: Jie Tang (Tsinghua) &nbsp;·&nbsp; Joel Fisher (Nottingham) &nbsp;·&nbsp; Kate Devlin (King's College London) &nbsp;·&nbsp; Owen Schaefer (NUS)</div></div></div>
+        </div>
+
+        <div class="prog-break"><span class="prog-break-time">1230–1400</span><span>Lunch &amp; Posters</span></div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">1400–1540</span>
+            <span class="prog-session-name">Agentic AI — I</span>
+            <span class="prog-session-chair">Chair: Lizi Liao (SMU)</span>
+          </div>
+          <div class="prog-talk"><span class="prog-talk-time">1400–1425</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Yuxiao Dong <span style="font-weight:400;color:#999;">(Tsinghua)</span></div><div class="prog-talk-title">Advancing Agentic LLMs through RL and Inference Scaling</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1425–1450</span><div class="prog-talk-body"><div class="prog-talk-speaker">Dr Long Bai <span style="font-weight:400;color:#999;">(Institute of Computing)</span></div><div class="prog-talk-title">Knowledge Graph in Agentic AI</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1450–1515</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Hongning Wang <span style="font-weight:400;color:#999;">(Tsinghua)</span></div><div class="prog-talk-title">Agentic System for Interactive Education</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1515–1540</span><div class="prog-talk-body"><div class="prog-talk-speaker">Alan Zhao <span style="font-weight:400;color:#999;">(ScitiX)</span></div><div class="prog-talk-title">Monitoring Safety Drift During Fine-Tuning</div></div></div>
+        </div>
+
+        <div class="prog-break"><span class="prog-break-time">1540–1600</span><span>Teas</span></div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">1600–1740</span>
+            <span class="prog-session-name">Agentic AI — II</span>
+            <span class="prog-session-chair">Chair: Hongning Wang (Tsinghua)</span>
+          </div>
+          <div class="prog-talk"><span class="prog-talk-time">1600–1625</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Jiaheng Zhang <span style="font-weight:400;color:#999;">(NUS)</span></div><div class="prog-talk-title">Practical LLM Auditing Framework via Verifiable Computation</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1625–1650</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Lizi Liao <span style="font-weight:400;color:#999;">(SMU)</span> &amp; Dr Dan Zhang <span style="font-weight:400;color:#999;">(NUS)</span></div><div class="prog-talk-title">Scaling up Trust in Agentic System</div></div></div>
+          <div class="prog-panel"><span class="prog-panel-time">1650–1740</span><div class="prog-talk-body"><div class="prog-panel-label">Panel: Risks &amp; Opportunities in the Agentic AI Era</div><div class="prog-panel-sub">Facilitator: Hongning Wang (Tsinghua)<br>Panelists: Yuxiao Dong (Tsinghua) &nbsp;·&nbsp; Jiaheng Zhang (NUS) &nbsp;·&nbsp; Chao Wang (6Estates) &nbsp;·&nbsp; Alan Zhao (ScitiX)</div></div></div>
+        </div>
+
+        <div class="prog-social"><span class="prog-social-time">1830–2100</span><div><div class="prog-social-label">Dinner</div><div class="prog-social-detail">Yummy Palace &nbsp;·&nbsp; 87 Defu Lane 10, #02-01, Singapore 539219</div></div></div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="prog-day">30 April 2026 &nbsp;<span style="font-weight:400;font-size:16px;">(Thu)</span><span class="prog-day-label">DAY 2</span></div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">0900–1015</span>
+            <span class="prog-session-name">AI+X — Healthcare</span>
+            <span class="prog-session-chair">Chair: Zhenkai Liang (NUS)</span>
+          </div>
+          <div class="prog-talk"><span class="prog-talk-time">0900–0925</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Ramesh Jain <span style="font-weight:400;color:#999;">(UC Irvine)</span></div><div class="prog-talk-title">We Need Personal Care Utility</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">0925–0950</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Yang Liu <span style="font-weight:400;color:#999;">(Tsinghua)</span></div><div class="prog-talk-title">Agent Hospital</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">0950–1010</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Wynne Hsu <span style="font-weight:400;color:#999;">(NUS)</span></div><div class="prog-talk-title">My Journey with AI in Medicine</div></div></div>
+          <div class="prog-talk tbd-row"><span class="prog-talk-time">1010–1030</span><div class="prog-talk-body"><div class="prog-talk-speaker"><span class="tbd-badge">TBD</span></div></div></div>
+        </div>
+
+        <div class="prog-break"><span class="prog-break-time">1030–1050</span><span>Coffee Break</span></div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">1050–1200</span>
+            <span class="prog-session-name">Search &amp; Personalization</span>
+            <span class="prog-session-chair">Chair: Min Zhang (Tsinghua)</span>
+          </div>
+          <div class="prog-talk"><span class="prog-talk-time">1050–1115</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Thanassis Tiropanis <span style="font-weight:400;color:#999;">(Univ of Southampton)</span></div><div class="prog-talk-title">The Promise and the Challenges of Decentralised Information Retrieval</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1115–1140</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Yujia Zhou <span style="font-weight:400;color:#999;">(Tsinghua)</span></div><div class="prog-talk-title">RAG and Search</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1140–1200</span><div class="prog-talk-body"><div class="prog-talk-speaker">Dr Yang Zhang <span style="font-weight:400;color:#999;">(NUS)</span></div><div class="prog-talk-title">Personalization and Memory</div></div></div>
+        </div>
+
+        <div class="prog-parallel">
+          <div><div class="prog-phd-lunch"><span class="prog-phd-time">1210–1400</span><div><div class="prog-phd-label">PhD / Post-Doc Lunch Session</div><div class="prog-phd-sub">Presentation &amp; Open Discussion<br>Facilitators: Dan Zhang &amp; Yang Zhang (NUS)<br>Venue: COM4-L4 Meeting Room</div></div></div></div>
+          <div><div class="prog-break" style="height:100%;box-sizing:border-box;margin-bottom:0;"><span class="prog-break-time">1210–1400</span><div><div style="font-size:14px;">Lunch — Foyer of i4</div><div style="font-size:12px;color:#bbb;margin-top:2px;">(for those not joining PhD/Post-Doc session)</div></div></div></div>
+        </div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">1410–1440</span>
+            <span class="prog-session-name">PhD / Post-Doc Presentations</span>
+            <span class="prog-session-chair">Chair: Zhang Dan &amp; Zhang Yang (NUS)</span>
+          </div>
+        </div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">1440–1620</span>
+            <span class="prog-session-name">Embodied AI</span>
+            <span class="prog-session-chair">Chair: Zhiyong Huang (NUS)</span>
+          </div>
+          <div class="prog-talk"><span class="prog-talk-time">1440–1505</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Shuicheng Yan <span style="font-weight:400;color:#999;">(NUS)</span></div><div class="prog-talk-title">Agent-Nex: Inference Acceleration &amp; Generative Memory</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1505–1530</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Cathal Carrin <span style="font-weight:400;color:#999;">(Dublin City Univ)</span></div><div class="prog-talk-title">CASTLE: Modeling Human Daily Activities and Interactions</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1530–1555</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Daquan Zhou <span style="font-weight:400;color:#999;">(Peking Univ)</span></div><div class="prog-talk-title">Building Reliable Vision-Language-Action Model</div></div></div>
+          <div class="prog-talk"><span class="prog-talk-time">1555–1620</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Mike Shou <span style="font-weight:400;color:#999;">(NUS)</span></div><div class="prog-talk-title">From Video Generation to World Model for Robot Learning</div></div></div>
+        </div>
+
+        <div class="prog-session">
+          <div class="prog-session-head">
+            <span class="prog-session-time">1620–1630</span>
+            <span class="prog-session-name">Closing</span>
+            <span class="prog-session-chair">Maosong Sun (Tsinghua)</span>
+          </div>
+          <div class="prog-talk"><span class="prog-talk-time">1620–1630</span><div class="prog-talk-body"><div class="prog-talk-speaker">Prof Ji Wei <span style="font-weight:400;color:#999;">(Nanjing Univ)</span></div><div class="prog-talk-title">Announcement: NExT Workshop in Suzhou, 23–24 October 2026</div></div></div>
+        </div>
+
+        <div class="prog-social"><span class="prog-social-time">Evening</span><div><div class="prog-social-label">Outdoor Walk &amp; Dinner</div><div class="prog-social-detail">Changi Point Coastal Walk &nbsp;·&nbsp; Georges @ Changi Sailing Club</div></div></div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="row" style="margin-bottom:50px;">
+      <div class="col-lg-12">
+        <div class="prog-day">1 May 2026 &nbsp;<span style="font-weight:400;font-size:16px;">(Fri)</span><span class="prog-day-label">DAY 3</span></div>
+        <div class="prog-tour"><span class="prog-tour-time">Morning</span><div><div class="prog-tour-label">Half-Day Tour</div><div class="prog-tour-detail">Rainforest Wild ASIA — for participants and family &nbsp;·&nbsp; 20 Mandai Lake Road, Singapore 729825</div></div></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -307,6 +591,53 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Social Event</h2>
+            </div>
+        </div>
+
+        <!-- 29 Apr 2026: Dinner -->
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-lg-12">
+                <h3 class="section-subheading" style="color: #009879; border-bottom: 2px solid #009879; padding-bottom: 8px; font-size: 28px;">
+                    29 Apr 2026: Dinner
+                </h3>
+            </div>
+        </div>
+
+        <!-- Description text -->
+        <div class="row" style="margin-top: 20px; margin-bottom: 30px;">
+            <div class="col-md-8">
+                <p class="large" style="font-size: 16px; line-height: 1.8; color: #444;">
+                    We will have dinner at <strong>Yummy Palace</strong>, a beloved dim sum and Cantonese restaurant tucked away in the industrial enclave of Defu Lane.
+                    Known for its generous portions, authentic flavours, and lively atmosphere, Yummy Palace has long been a local favourite for group gatherings.
+                    Expect classic steamed and baked dim sum, roast meats, and hearty wok-fried dishes. 
+                </p>
+            </div>
+            <div class="col-md-4" style="padding-top: 8px; font-size: 14px; color: #555; line-height: 1.9;">
+                <strong>Address</strong><br>
+                87 Defu Lane 10, #02-01<br>
+                Singapore 539219<br><br>
+                <a href="https://maps.google.com/?q=87+Defu+Lane+10,+Singapore+539219" target="_blank" style="color: #009879;">Google Maps</a>
+            </div>
+        </div>
+
+        <!-- Two images side by side -->
+        <div class="row" style="margin-bottom: 40px;">
+            <div class="col-md-6" style="padding-right: 6px;">
+                <div style="position: relative; width: 100%; padding-bottom: 66.6%; border-radius: 6px; overflow: hidden;">
+                    <img src="assets/img/social_events/yummy.png"
+                         alt="Yummy Palace"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                </div>
+            </div>
+            <div class="col-md-6" style="padding-left: 6px;">
+                <div style="position: relative; width: 100%; padding-bottom: 66.6%; border-radius: 6px; overflow: hidden;">
+                    <img src="assets/img/social_events/yummy1.png"
+                         alt="Yummy Palace Food"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <p style="text-align: center; color: #888; font-size: 13px; margin-top: 6px;">Yummy Palace, 87 Defu Lane 10, #02-01, Singapore 539219</p>
             </div>
         </div>
 
